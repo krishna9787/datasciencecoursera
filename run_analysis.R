@@ -35,6 +35,7 @@ run_analysis <- function(){
 	total.data1<-total.data[,grep("mean|std|Subject|Activity", names(total.data))]
 	
 	#3.Uses descriptive activity names to name the activities in the data set
+	library(plyr)
 	total.data2<- join(total.data1,activity.names, by="Activity")
 
 	#4.Appropriately labels the data set with descriptive variable names.
@@ -46,6 +47,7 @@ run_analysis <- function(){
 	names(total.data2)<-gsub("BodyBody", "Body", names(total.data2))
 
 	#5.From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
+	library(data.table)
 	final.data<- data.table(total.data2)
 	mean.final.data = ddply(final.data, c("Subject","Activity","Activity.Name"), numcolwise(mean))
 	write.table(mean.final.data, file = "meanfinaldata.txt",row.name=FALSE)	
