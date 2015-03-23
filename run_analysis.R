@@ -48,3 +48,4 @@ run_analysis <- function(){
 	final.data<- data.table(total.data2)
 	mean.final.data = ddply(final.data, c("Subject","Activity","Activity.Name"), numcolwise(mean))
 	write.table(mean.final.data, file = "meanfinaldata.txt",row.name=FALSE)	
+}
