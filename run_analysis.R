@@ -3,6 +3,7 @@ run_analysis <- function(){
 	if(!file.exists("./proj")){dir.create("./proj")}
 	url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 	download.file(url,destfile="./proj/RawData.zip",method="curl")
+	unzip(zipfile="./proj/RawData.zip",exdir="./data")
 
 	# get the features and activities
 	f.path<-file.path("./proj","UCI HAR Dataset")
